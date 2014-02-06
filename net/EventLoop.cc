@@ -4,6 +4,7 @@
 #include <net/Poller.h>
 #include <net/Channel.h>
 #include <assert.h>
+#include <base/Mutex.h>
 
 using namespace muduoEmb;
 using namespace muduoEmb::net;

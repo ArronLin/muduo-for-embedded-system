@@ -2,13 +2,15 @@ TARGET=example/test
 SRCS= example/main.cc \
 			net/EventLoop.cc \
 			net/Channel.cc \
-			net/Poller.cc
+			net/Poller.cc \
+			base/Condition.cc
 
 OBJS=$(patsubst %.cc, %.o, ${SRCS})
 CFLAGS= -I. -g -Wall
+LFLAGS= -lpthread -lrt
 
 ${TARGET}: ${OBJS}
-	g++ $^ -o $@
+	g++ $^ ${LFLAGS} -o $@
 
 %.o: %.cc
 	g++ -c ${CFLAGS} $^ -o $@
