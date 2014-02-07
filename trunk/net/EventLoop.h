@@ -1,12 +1,11 @@
-#ifndef MUDUOEMB_NET_EVENTLOOP
-#define MUDUOEMB_NET_EVENTLOOP
+#ifndef MUDUOEMB_NET_EVENTLOOP_H
+#define MUDUOEMB_NET_EVENTLOOP_H
 
 #include <base/Uncopyable.h>
 #include <stdlib.h>
 #include <vector>
 #include <tr1/memory>
-
-extern pid_t gettid();
+#include <base/CurrentThread.h>
 
 namespace muduoEmb
 {
@@ -35,7 +34,7 @@ class EventLoop : Uncopyable
     void update(Channel* channel);
     void quit() { quit_ = true; }
 
-    bool isInLoopThread() { return threadId_ == gettid();}
+    bool isInLoopThread() { return threadId_ == CurrentThread::tid();}
   private:
     const pid_t   threadId_;
     bool          looping_;

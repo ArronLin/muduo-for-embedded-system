@@ -7,6 +7,9 @@
 #include <cstdio>
 #include <pthread.h>
 #include <unistd.h>
+#include <base/Atomic.h>
+#include <net/InetAddress.h>
+#include <cstring>
 
 muduoEmb::net::EventLoop* g_loop = NULL;
 
@@ -63,20 +66,16 @@ int main(int argc, char *argv[])
   
   loop.loop();
   #endif
+	muduoEmb::net::InetAddress addr("192.168.2.118", 80);	
+	std::cout << addr.toIpPort() << std::endl;
+	std::cout << addr.toIp() << std::endl;
 
-  pthread_t threadId;
-  pthread_create(&threadId, NULL, threadFunc, NULL);
+	struct sockaddr_in caddr;
+	memset(&caddr, 0, sizeof(caddr));
+	muduoEmb::net::InetAddress addr1(caddr);
+	std::cout << addr1.toIpPort() << std::endl;
+	std::cout << addr1.toIp() << std::endl;
 
-  while (true)
-  {
-    {
-      muduoEmb::MutexLockGuard guard(mutex);
-      signal = 1;
-      cond.notify();
-    }
-    ::sleep(1);
-  }
-  
   return 0;
 }
 

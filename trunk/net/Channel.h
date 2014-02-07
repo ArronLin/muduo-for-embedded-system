@@ -1,5 +1,5 @@
-#ifndef MUDUOEMB_NET_CHANNEL
-#define MUDUOEMB_NET_CHANNEL
+#ifndef MUDUOEMB_NET_CHANNEL_H
+#define MUDUOEMB_NET_CHANNEL_H
 
 #include <tr1/functional>
 #include <base/Uncopyable.h>

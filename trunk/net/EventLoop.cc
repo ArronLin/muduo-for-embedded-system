@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <sys/syscall.h>
 #include <net/EventLoop.h>
 #include <net/Poller.h>
 #include <net/Channel.h>
@@ -17,13 +16,8 @@ const int kPollTimeMs = 10000;
 __thread EventLoop* t_loopInThisThread = NULL;
 }
 
-pid_t gettid()
-{
-  return static_cast<pid_t>(::syscall(SYS_gettid));
-}
-
 EventLoop::EventLoop()
-  : threadId_(gettid()),
+  : threadId_(CurrentThread::tid()),
     looping_(false),
     quit_(false),
     poller_(new Poller(this))

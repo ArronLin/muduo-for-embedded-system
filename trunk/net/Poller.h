@@ -1,5 +1,5 @@
-#ifndef MUDUOEMB_NET_POLLER
-#define MUDUOEMB_NET_POLLER
+#ifndef MUDUOEMB_NET_POLLER_H
+#define MUDUOEMB_NET_POLLER_H
 
 #include <vector>
 #include <map>
