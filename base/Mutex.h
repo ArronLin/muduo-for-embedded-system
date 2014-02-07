@@ -1,11 +1,10 @@
-#ifndef MUDUOEMB_NET_MUTEX
-#define MUDUOEMB_NET_MUTEX
+#ifndef MUDUOEMB_NET_MUTEX_H
+#define MUDUOEMB_NET_MUTEX_H
 
 #include <pthread.h>
 #include <assert.h>
 #include <base/Uncopyable.h>
-
-extern pid_t gettid();
+#include <base/CurrentThread.h>
 
 namespace muduoEmb
 {
@@ -28,7 +27,7 @@ class MutexLock : Uncopyable
 
     bool isLockedByThisThread()
     {
-      return holder_ == ::gettid();
+      return holder_ == CurrentThread::tid();
     }
 
     void assertLocked()
@@ -39,7 +38,7 @@ class MutexLock : Uncopyable
     void lock()
     {
       pthread_mutex_lock(&mutex_);
-      holder_ = ::gettid();
+      holder_ = CurrentThread::tid();
     }
 
     void unlock()

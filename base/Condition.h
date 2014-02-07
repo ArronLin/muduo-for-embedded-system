@@ -1,5 +1,5 @@
-#ifndef MUDUOEMB_NET_CONDITION
-#define MUDUOEMB_NET_CONDITION
+#ifndef MUDUOEMB_NET_CONDITION_H
+#define MUDUOEMB_NET_CONDITION_H
 
 #include <pthread.h>
 #include <assert.h>
